@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Tarefas - Adiçao</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+
+    </head>
+
+    <body>
+
+        <h2>Adicionar Nova Tarefa</h2>
+
+        <form action="#" th:action="@{/adicionar-tarefa}" th:object="${tarefa}" method="post">
+
+            <label for="titulo">Titulo: </label>
+            <input type="text" th:field="*{titulo}" id="titulo">
+            <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+
+            <br/><br/>
+
+            <label for="descricao">Descricao: </label>
+            <input type="text" th:field="*{descricao}" id="descricao">
+            <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+
+            <br/><br/>
+
+            <label for="prazo">Prazo de conclusão</label>
+            <input type="date" th:field="*{prazo}" id="prazo"/>
+
+            <br/><br/>
+
+            <input type="submit" value="Adicionar">
+
+        </form>
+
+    </body>
+
+</html>
+

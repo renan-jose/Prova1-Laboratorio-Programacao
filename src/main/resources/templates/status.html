@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Tarefas - Lista</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+
+    </head>
+
+    <body>
+
+        <h2>Filtragem por status</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Prazo de Conclusão</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr th:each="t : ${tarefa}">
+
+                    <td th:text="${t.titulo}"></td>
+                    <td th:text="${t.descricao}"></td>
+                    <td th:text="${#dates.format(t.prazo, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${t.concluida} ? 'Concluída' : 'Não Concluída'"></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <p><a href="/index">Voltar</a></p>
+
+    </body>
+
+</html>

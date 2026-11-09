@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Tarefas - Edição</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+
+    </head>
+
+    <body>
+
+        <h2>Editar Tarefa</h2>
+
+        <form action="#" th:action="@{/atualizar/{id}(id=${tarefa.id})}" th:object="${tarefa}" method="post">
+
+            <label for="titulo">Título: </label>
+            <input type="text" th:field="*{titulo}" id="titulo">
+            <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+
+            <br/><br/>
+
+            <label for="descricao">Descricao:</label>
+            <input type="text" th:field="*{descricao}" id="descricao">
+
+            <br/><br/>
+
+            <label for="prazo">Prazo de conclusão</label>
+            <input type="date" th:field="*{prazo}" id="prazo"/>
+
+            <br/><br/>
+
+            <label for="concluida">Marcar como concluída</label>
+            <input type="checkbox" th:field="*{concluida}" id="concluida"/>
+
+            <br/><br/>
+
+            <input type="submit" value="Atualizar">
+
+        </form>
+
+    </body>
+
+</html>

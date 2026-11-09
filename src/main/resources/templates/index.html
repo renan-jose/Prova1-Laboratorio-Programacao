@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Tarefas - Lista</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+
+    </head>
+
+    <body>
+
+        <div th:if="${tarefa.isEmpty()}">
+
+            <h2>Ainda não há tarefas!</h2>
+
+        </div>
+
+        <div th:if="${!tarefa.isEmpty()}">
+
+            <h2>Tarefas</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Prazo de Conclusão</th>
+                        <th>Status</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="t : ${tarefa}">
+
+                        <td th:text="${t.titulo}"></td>
+                        <td th:text="${t.descricao}"></td>
+                        <td th:text="${#dates.format(t.prazo, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${t.concluida} ? 'Concluída' : 'Não Concluída'"></td>
+                        <td><a th:href="@{/editar/{id}(id=${t.id})}">Editar</a></td>
+                        <td><a th:href="@{/remover/{id}(id=${t.id})}">Excluir</a></td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p><a href="/status/concluidas">Filtrar por tarefas concluídas</a></p>
+
+        <p><a href="/status/nao-concluidas">Filtrar por tarefas não-concluídas</a></p>
+
+        <form th:action="@{/prazo}" method="get">
+
+            <label for="prazo">Filtrar por prazo</label>
+            <input type="date" name="prazo" id="prazo"/>
+            <button type="submit">Filtrar</button>
+
+        </form>
+
+        <br/>
+
+        <form th:action="@{/palavra-chave}" method="get">
+
+            <label for="palavra">Filtrar por palavra-chave</label>
+            <input type="text" id="palavra" name="palavra" />
+            <button type="submit">Filtrar</button>
+
+        </form>
+
+        <p><a href="/nova-tarefa">Adicionar uma nova tarefa</a></p>
+
+
+
+    </body>
+
+</html>
